@@ -51,36 +51,36 @@
                         <tbody>
                           <tr>
                             <th>Best Price</th>
-                            <th>$1219</th>  
+                            <th>$<span id="best-total">1299</span></th>  
                           </tr>
                           <tr>
                             <th>Extra Memory Cost</th>
-                            <th>$<span id="memory-cost-field">0</span></th>  
+                            <th>$<span id="memory-total">0</span></th>  
                           </tr>
                           <tr>
                             <th>Extra Storage Cost </th>
-                            <th>$<span id="storage-cost-field">0</span></th>  
+                            <th>$<span id="storage-total">0</span></th>  
                           </tr>
                           <tr style="border-bottom: 1px solid black;">
                             <th>Delivery Charge</th>
-                            <th>$<span id="delivery-charge-field">0</span></th>  
+                            <th>$<span id="delivery-total">0</span></th>  
                           </tr>
                           <tr>
                             <th>Total Price</th>
-                            <th>$1299</th>  
+                            <th>$<span id="total-price">1299</span></th>  
                           </tr>
                         </tbody>
                       </table>
                       <div class="mb-3">
                           <p class="mb-1">Add Pomo Code</p>
                           <input id="promo-input" type="text" class="form-control w-50 d-inline me-1">
-                          <button onclick="applyWithPromo()" class="btn btn-success">Apply</button>
+                          <button onclick="promoDiscount()" id="promo-button" class="btn btn-success" disabled>Apply</button>
                       </div>
                 </div>
             </div>
             <hr>
             <div class="text-center">
-                <h2>Total: $1299</h2>
+                <h2>Total: $<span id="final-total-price">1299</span></h2>
             </div>
         </section>
     </main>

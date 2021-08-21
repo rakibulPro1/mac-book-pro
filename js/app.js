@@ -1,55 +1,97 @@
+const bestTotalField = document.getElementById('best-total');
+const memoryTotalField = document.getElementById('memory-total');
+const storageTotalField = document.getElementById('storage-total');
+const deliveryTotalField = document.getElementById('delivery-total');
+const totalPriceField = document.getElementById('total-price');
+const finalTotalPriceField = document.getElementById('final-total-price');
+const promoInput = document.getElementById('promo-input');
+
 // update Memory Cost 
 function memoryCost(memory){
-    const memoryCostField = document.getElementById('memory-cost-field');
     if(memory == '8gb'){
-        memoryCostField.innerText = 0;
+        memoryTotalField.innerText = 0;
     }
     else if(memory == '16gb'){
-        memoryCostField.innerText = 180;
+        memoryTotalField.innerText = 180;
     }
+    totalPrice();
 }
 
 // Upddate Storage Cost 
 function storageCost(memory){
-    const storageCostField = document.getElementById('storage-cost-field');
     if(memory == '256gb'){
-        storageCostField.innerText = 0;
+        storageTotalField.innerText = 0;
     }
     else if(memory == '512gb'){
-        storageCostField.innerText = 100;
+        storageTotalField.innerText = 100;
     }
-    if(memory == '1tb'){
-        storageCostField.innerText = 180;
+    else if(memory == '1tb'){
+        storageTotalField.innerText = 180;
     }
+    totalPrice();
 }
 
 // Update delivery Charge
 function deliveryCharge(charging){
-    const deliveryCostField = document.getElementById('delivery-charge-field');
     if(charging == 'free'){
-        deliveryCostField.innerText = 0;
+        deliveryTotalField.innerText = 0;
     }
     else if(charging == 'must'){
-        deliveryCostField.innerText = 20;
+        deliveryTotalField.innerText = 20;
     }
-    
+    totalPrice();
 }
 
 // Update Total price 
+function totalPrice(){
+    const bestTotalAmount = parseFloat(bestTotalField.innerText);
+    const memoryTotalAmount = parseFloat(memoryTotalField.innerText);
+    const storageTotalAmount = parseFloat(storageTotalField.innerText);
+    const deliveryTotalAmount = parseFloat(deliveryTotalField.innerText);
+    // update total price in html file
+    const totalAmount = bestTotalAmount + memoryTotalAmount + storageTotalAmount + deliveryTotalAmount;
+    totalPriceField.innerText = totalAmount;
+    updateFinalTotal(totalAmount);
+   
 
-
-
-// Apply with promo code
-function applyWithPromo(){
-    const promoInputField = document.getElementById('promo-input');
-    const promoInputText = promoInputField.value;
-    if(promoInputText == 'stevekaku'){
-        console.log('yes');
-    }
-    else{
-        console.log('sorry')
-    }
-    promoInputField.value = '';
 }
+    // Apply with promo code
+function updateFinalTotal(totalAmount){
+    finalTotalPriceField.innerText = totalAmount;
+}
+promoInput.addEventListener('keyup', function (event) {
+    const promoButton = document.getElementById('promo-button');
+    if (event.target.value == 'stevekaku') {
+        promoButton.removeAttribute('disabled');
+    }
+    else {
+        promoButton.setAttribute('disabled', true);
+    }
+});
+// promo code confirmation via Change
+promoInput.addEventListener('change', function (event) {
+    const promoButton = document.getElementById('promo-button');
+    if (event.target.value == 'stevekaku') {
+        promoButton.removeAttribute('disabled');
+    }
+    else {
+        promoButton.setAttribute('disabled', true);
+    }
+});
+
+function promoDiscount() {
+    const totalAmount = parseFloat(totalPriceField.innerText);
+    const promoDiscount = totalAmount * 20 / 100;
+    const totalWithPromoDiscount = totalAmount - promoDiscount;
+    finalTotalPriceField.innerText = totalWithPromoDiscount;
+    promoInput.value = '';
+}
+    
+
+
+
+
+
+
 
 
